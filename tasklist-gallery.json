@@ -1,0 +1,391 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/tile-formatting.schema.json",
+  "hideSelection": true,
+  "hideColumnHeader": true,
+  "hideListHeader": true,
+  "groupProps": {
+    "headerFormatter": {
+      "elmType": "div",
+      "attributes": {
+        "class": "sp-row-card"
+      },
+      "children": [
+        {
+          "elmType": "div",
+          "txtContent": "=if(@group.fieldData.displayValue == '0', '@group.count'+' tasks must be completed on/after separation date','@group.count'+ ' tasks can be completed before separation date')"
+        }
+      ]
+    }
+  },
+  "width": "250",
+  "height": "200",
+  "formatter": {
+    "elmType": "div",
+    "attributes": {
+      "title": "Task Card",
+      "class": "sp-css-backgroundColor-noFill"
+    },
+    "style": {
+      "max-height": "190px",
+      "max-width": "240px",
+      "display": "flex",
+      "flex-direction": "column",
+      "justify-content": "space-between",
+      "align-items": "stretch",
+      "border-radius": "10px",
+      "padding": "10px",
+      "margin-left": "5px",
+      "margin-top": "5px",
+      "box-shadow": "0px 0px 4px 0px rgba(0,0,0,0.3)"
+    },
+    "children": [
+      {
+        "elmType": "div",
+        "attributes": {
+          "title": "Task Card Header"
+        },
+        "style": {
+          "display": "flex",
+          "flex-direction": "row",
+          "justify-content": "space-between",
+          "align-items": "flex-start"
+        },
+        "children": [
+          {
+            "elmType": "span",
+            "style": {
+              "padding": ".5em",
+              "border-radius": "50%"
+            },
+            "attributes": {
+              "class": "=if([$Department1] == 'FIN','ms-bgColor-sharedYellowGreen10',if([$Department1] == 'IT','ms-bgColor-tealLight', if([$Department1] == 'HR','ms-bgColor-sharedBlueMagenta10',if([$Department1] == 'OPS','ms-bgColor-sharedOrange10',if([$Department1] == 'MGT','ms-bgColor-sharedCyan10','sp-css-backgroundColor-BgGray')))))+' '+'ms-fontSize-l ms-fontColor-white'",
+              "title": "Task Category",
+              "iconName": "=if([$Department1] == 'FIN','Money',if([$Department1] == 'IT','PC1', if([$Department1] == 'HR','Work',if([$Department1] == 'OPS','Processing',if([$Department1] == 'MGT','AccountManagement','StatusCircleQuestionMark')))))"
+            }
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "title": "Click for task actions",
+              "class": "ms-fontColor-themeLight ms-fontColor-themeDark--hover",
+              "iconName": "Edit"
+            },
+            "style": {
+              "border": "none",
+              "background-color": "transparent",
+              "cursor": "pointer"
+            },
+            "customCardProps": {
+              "openOnEvent": "click",
+              "directionalHint": "rightCenter",
+              "formatter": {
+                "elmType": "div",
+                "attributes": {
+                  "class": "ms-ContextualMenu-list is-open list-436 "
+                },
+                "style": {
+                  "display": "flex",
+                  "flex-direction": "column",
+                  "justify-content": "space-evenly",
+                  "align-items": "flex-start",
+                  "width": "175px",
+                  "padding-top": "5px"
+                },
+                "children": [
+                  {
+                    "elmType": "button",
+                    "attributes": {
+                      "title": "Add documentation",
+                      "class": "ms-fontSize-m ms-bgColor-white ms-bgColor-themeLighter--hover"
+                    },
+                    "customRowAction": {
+                      "action": "defaultClick"
+                    },
+                    "style": {
+                      "width": "100%",
+                      "border-width": "0 0 1px 0",
+                      "border-style": "solid",
+                      "border-color": "#e5e5e5",
+                      "padding-bottom": "5px",
+                      "cursor": "pointer",
+                      "text-align": "left"
+                    },
+                    "txtContent": "Add documentation"
+                  },
+                  {
+                    "elmType": "button",
+                    "attributes": {
+                      "title": "Edit task",
+                      "class": "ms-fontSize-m ms-bgColor-white ms-bgColor-themeLighter--hover"
+                    },
+                    "customRowAction": {
+                      "action": "editProps"
+                    },
+                    "style": {
+                      "width": "100%",
+                      "border-width": "0 0 1px 0",
+                      "border-style": "solid",
+                      "border-color": "#e5e5e5",
+                      "padding-bottom": "5px",
+                      "cursor": "pointer",
+                      "text-align": "left"
+                    },
+                    "txtContent": "Edit task"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "elmType": "div",
+        "attributes": {
+          "title": "Task title and link"
+        },
+        "children": [
+          {
+            "elmType": "span",
+            "attributes": {
+              "title": "Task Title",
+              "class": "sp-row-title"
+            },
+            "txtContent": "[$Title]"
+          },
+          {
+            "elmType": "a",
+            "attributes": {
+              "href": "[$Link]",
+              "target": "_blank",
+              "iconName": "Share",
+              "title": "[$Link]",
+              "class": "ms-fontColor-themeTertiary ms-fontColor-themeDarker--hover ms-fontColor-themeTertiary--visited"
+            },
+            "style": {
+              "display": "=if([$Link]!='','inline-block','none')",
+              "text-decoration": "none",
+              "margin-left": "5px"
+            }
+          }
+        ]
+      },
+      {
+        "elmType": "div",
+        "attributes": {
+          "title": "Task Card Body",
+          "class": "ms-font-s"
+        },
+        "style": {
+          "display": "flex",
+          "flex-direction": "column",
+          "justify-content": "flex-start",
+          "align-items": "flex-start"
+        },
+        "children": [
+          {
+            "elmType": "div",
+            "attributes": {
+              "title": "Task Notes"
+            },
+            "style": {
+              "flex-grow": "1"
+            },
+            "txtContent": "[$Body]"
+          }
+        ]
+      },
+      {
+        "elmType": "div",
+        "attributes": {
+          "title": "Task Card Footer",
+          "class": "ms-font-m"
+        },
+        "style": {
+          "display": "flex",
+          "flex-direction": "row",
+          "justify-content": "space-between",
+          "align-items": "center"
+        },
+        "children": [
+          {
+            "elmType": "div",
+            "txtContent": "[$TaskStatus]",
+            "style": {
+              "box-sizing": "border-box",
+              "padding": "4px 8px 5px 8px",
+              "overflow": "hidden",
+              "text-overflow": "ellipsis",
+              "display": "flex",
+              "border-radius": "16px",
+              "height": "24px",
+              "align-items": "center",
+              "white-space": "nowrap",
+              "margin": "4px 4px 4px 4px",
+              "cursor": "pointer"
+            },
+            "attributes": {
+              "title": "Click to change status",
+              "class": "=if([$TaskStatus]=='Not Started','sp-css-backgroundColor-BgCornflowerBlue',if([$TaskStatus]=='In Progress','sp-css-backgroundColor-BgGold',if([$TaskStatus]=='Completed','sp-css-backgroundColor-BgMintGreen',if([$TaskStatus]=='Waiting on someone else','sp-css-backgroundColor-BgCoral',if([$TaskStatus]=='Not applicable','sp-css-backgroundColor-BgLightGray','sp-css-backgroundColor-BgMauve')))))+' '+'ms-fontSize-s'"
+            },
+            "customCardProps": {
+              "openOnEvent": "click",
+              "directionalHint": "bottomCenter",
+              "formatter": {
+                "elmType": "div",
+                "attributes": {
+                  "class": "ms-ContextualMenu-list is-open list-436 "
+                },
+                "style": {
+                  "display": "flex",
+                  "flex-direction": "column",
+                  "justify-content": "space-evenly",
+                  "align-items": "flex-start",
+                  "width": "175px",
+                  "padding-top": "5px"
+                },
+                "children": [
+                  {
+                    "elmType": "button",
+                    "attributes": {
+                      "title": "In progress",
+                      "class": "ms-fontSize-s ms-bgColor-white ms-bgColor-themeLighter--hover"
+                    },
+                    "customRowAction": {
+                      "action": "setValue",
+                      "actionInput": {
+                        "TaskStatus": "In Progress"
+                      }
+                    },
+                    "style": {
+                      "width": "100%",
+                      "border-width": "0 0 1px 0",
+                      "border-style": "solid",
+                      "border-color": "#e5e5e5",
+                      "padding-bottom": "5px",
+                      "cursor": "pointer",
+                      "text-align": "left"
+                    },
+                    "txtContent": "In Progress"
+                  },
+                  {
+                    "elmType": "button",
+                    "attributes": {
+                      "title": "Not applicable",
+                      "class": "ms-fontSize-s ms-bgColor-white ms-bgColor-themeLighter--hover"
+                    },
+                    "customRowAction": {
+                      "action": "setValue",
+                      "actionInput": {
+                        "TaskStatus": "Not Applicable"
+                      }
+                    },
+                    "style": {
+                      "width": "100%",
+                      "border-width": "0 0 1px 0",
+                      "border-style": "solid",
+                      "border-color": "#e5e5e5",
+                      "padding-bottom": "5px",
+                      "cursor": "pointer",
+                      "text-align": "left"
+                    },
+                    "txtContent": "Not applicable"
+                  },
+                  {
+                    "elmType": "button",
+                    "attributes": {
+                      "title": "Waiting on someone else",
+                      "class": "ms-fontSize-s ms-bgColor-white ms-bgColor-themeLighter--hover"
+                    },
+                    "customRowAction": {
+                      "action": "setValue",
+                      "actionInput": {
+                        "TaskStatus": "Waiting on someone else"
+                      }
+                    },
+                    "style": {
+                      "width": "100%",
+                      "border-width": "0 0 1px 0",
+                      "border-style": "solid",
+                      "border-color": "#e5e5e5",
+                      "padding-bottom": "5px",
+                      "cursor": "pointer",
+                      "text-align": "left"
+                    },
+                    "txtContent": "Waiting on someone else"
+                  },
+                  {
+                    "elmType": "button",
+                    "attributes": {
+                      "title": "Mark Complete",
+                      "class": "ms-fontSize-s ms-bgColor-white ms-bgColor-themeLighter--hover"
+                    },
+                    "customRowAction": {
+                      "action": "setValue",
+                      "actionInput": {
+                        "TaskStatus": "Completed",
+                        "Completed": "@now",
+                        "CompletedBy": "@me"
+                      }
+                    },
+                    "style": {
+                      "width": "100%",
+                      "border-width": "0 0 1px 0",
+                      "border-style": "solid",
+                      "border-color": "#e5e5e5",
+                      "padding-bottom": "5px",
+                      "cursor": "pointer",
+                      "text-align": "left"
+                    },
+                    "txtContent": "Completed"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "title": "Task Assignees"
+            },
+            "children": [
+              {
+                "forEach": "personIterator in [$AssignedTo]",
+                "elmType": "div",
+                "style": {
+                  "display": "=if(length([$AssignedTo])>2 && loopIndex('personIterator')>=3, 'none', 'inline-block')",
+                  "padding": "2px",
+                  "margin-left": "-12px",
+                  "text-align": "center",
+                  "width": "28px"
+                },
+                "children": [
+                  {
+                    "elmType": "div",
+                    "children": [
+                      {
+                        "elmType": "img",
+                        "style": {
+                          "width": "24px",
+                          "border-radius": "50%",
+                          "border": "4px solid #FFFFFF",
+                          "text-overflow": "ellipsis",
+                          "overflow": "hidden",
+                          "white-space": "nowrap"
+                        },
+                        "defaultHoverField": "[$personIterator]",
+                        "attributes": {
+                          "src": "=getUserImage('[$personIterator.email]','small')",
+                          "title": "[$personIterator.title]"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
